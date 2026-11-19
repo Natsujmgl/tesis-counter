@@ -54,10 +54,11 @@ export const config = {
   spotifyPlaylistId: '7ckbHF0HVh7FyP6J0XpgaO',
 } as const;
 
-export type Theme = 'lavender' | 'arirang' | 'ameri' | 'swag';
+export type Theme = 'lavender' | 'arirang' | 'swag-ii' | 'swag' | 'ameri';
 export const themes: { id: Theme; label: string; color: string }[] = [
   { id: 'lavender', label: 'Lavanda', color: '#aa8abe' },
-  { id: 'arirang', label: 'ARIRANG · BTS', color: '#bb636b' },
-  { id: 'ameri', label: 'AMERI · Duki', color: '#6f8d80' },
-  { id: 'swag', label: 'SWAG · Justin', color: '#a08a68' },
+  { id: 'arirang', label: 'ARIRANG · BTS', color: '#eb193c' },
+  { id: 'swag-ii', label: 'SWAG II · Justin', color: '#f3a6bb' },
+  { id: 'swag', label: 'SWAG · Justin', color: '#1b1b1f' },
+  { id: 'ameri', label: 'AMERI · Duki', color: '#b5261e' },
 ];

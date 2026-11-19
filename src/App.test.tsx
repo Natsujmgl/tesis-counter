@@ -128,20 +128,23 @@ describe('romantic countdown public interface', () => {
     expect(container.querySelectorAll('iframe')).toHaveLength(1);
     expect(iframe).toHaveAttribute('src', src);
   });
-  it('preserves all four footer themes alongside the playlist-only section', () => {
+  it('places all five themes in the header and triggers the rose and sunflower shower alongside the playlist-only section', () => {
     at('2026-12-01T10:00:00');
     const { container } = render(<App />);
-    const footer = within(screen.getByRole('contentinfo'));
-    const picker = within(footer.getByRole('group', { name: 'Elegí una atmósfera' }));
-    expect(picker.getAllByRole('button')).toHaveLength(4);
+    const header = within(screen.getByRole('banner'));
+    const picker = within(header.getByRole('group', { name: 'Elegí una atmósfera' }));
+    expect(picker.getAllByRole('button')).toHaveLength(5);
     for (const [label, theme] of [
-      ['Tema ARIRANG · BTS', 'arirang'], ['Tema AMERI · Duki', 'ameri'],
-      ['Tema SWAG · Justin', 'swag'], ['Tema Lavanda', 'lavender'],
+      ['Tema ARIRANG · BTS', 'arirang'], ['Tema SWAG II · Justin', 'swag-ii'],
+      ['Tema SWAG · Justin', 'swag'], ['Tema AMERI · Duki', 'ameri'],
+      ['Tema Lavanda', 'lavender'],
     ]) {
       fireEvent.click(picker.getByRole('button', { name: label }));
       expect(container.querySelector('.app-shell')).toHaveAttribute('data-theme', theme);
       expect(picker.getByRole('button', { name: label })).toHaveAttribute('aria-pressed', 'true');
     }
+    fireEvent.click(screen.getByRole('button', { name: /Lluvia de rosas y girasoles/i }));
+    expect(container.querySelector('.floral-shower')).toBeInTheDocument();
     const region = screen.getByRole('region', { name: 'Canciones para acompañarte, amorshito' });
     expect(within(region).getAllByRole('button')).toHaveLength(1);
     expect(within(region).getByRole('button', { name: 'Escuchar nuestra música' })).toBeInTheDocument();

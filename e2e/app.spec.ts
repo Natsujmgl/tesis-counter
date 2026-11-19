@@ -27,8 +27,9 @@ for (const width of [320, 375, 1440]) {
     await expect(iframe).toHaveAttribute('loading', 'lazy');
     await expect(page.getByRole('region', { name: 'Canciones para acompañarte, amorshito' }).getByRole('link', { name: 'Abrir en Spotify' })).toHaveAttribute('href', 'https://open.spotify.com/playlist/7ckbHF0HVh7FyP6J0XpgaO');
     for (const [label, theme] of [
-      ['Tema ARIRANG · BTS', 'arirang'], ['Tema AMERI · Duki', 'ameri'],
-      ['Tema SWAG · Justin', 'swag'], ['Tema Lavanda', 'lavender'],
+      ['Tema ARIRANG · BTS', 'arirang'], ['Tema SWAG II · Justin', 'swag-ii'],
+      ['Tema SWAG · Justin', 'swag'], ['Tema AMERI · Duki', 'ameri'],
+      ['Tema Lavanda', 'lavender'],
     ]) {
       await page.getByRole('button', { name: label }).click();
       await expect(page.locator('.app-shell')).toHaveAttribute('data-theme', theme);
